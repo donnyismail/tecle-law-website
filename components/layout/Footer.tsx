@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Phone, Mail, Clock } from 'lucide-react';
+import { COMPANY } from '@/lib/constants';
 
 export default function Footer() {
   return (
@@ -20,25 +21,25 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-4">Contact Us</h3>
             <ul className="space-y-3">
               <li className="flex items-center">
-                <Phone className="w-4 h-4 mr-2" />
-                <a href="tel:7132825871" className="hover:text-secondary">(713) 282-5871</a>
+                <Phone className="w-4 h-4 mr-2" aria-hidden="true" />
+                <a href={COMPANY.phoneLink} className="hover:text-secondary">{COMPANY.phone}</a>
               </li>
               <li className="flex items-center">
-                <Mail className="w-4 h-4 mr-2" />
-                <a href="mailto:intake@teclelaw.com" className="hover:text-secondary">intake@teclelaw.com</a>
+                <Mail className="w-4 h-4 mr-2" aria-hidden="true" />
+                <a href={COMPANY.emailLink} className="hover:text-secondary">{COMPANY.email}</a>
               </li>
               <li className="flex items-center">
-                <Clock className="w-4 h-4 mr-2" />
-                <span>Mon-Fri: 9:00 AM - 5:00 PM</span>
+                <Clock className="w-4 h-4 mr-2" aria-hidden="true" />
+                <span>{COMPANY.hours}</span>
               </li>
             </ul>
           </div>
 
           {/* Legal */}
           <div>
-            <h3 className="text-xl font-bold mb-4">TECLE LAW, PLLC</h3>
-            <p className="text-sm mb-4">Houston, Texas</p>
-            <p className="text-sm text-gray-400">© {new Date().getFullYear()} TECLE LAW, PLLC. All rights reserved.</p>
+            <h3 className="text-xl font-bold mb-4">{COMPANY.name}</h3>
+            <p className="text-sm mb-4">{COMPANY.location}</p>
+            <p className="text-sm text-gray-400">© {new Date().getFullYear()} {COMPANY.name}. All rights reserved.</p>
           </div>
         </div>
       </div>

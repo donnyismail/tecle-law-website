@@ -8,6 +8,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-dm-serif)', 'Georgia', 'serif'],
+      },
       colors: {
         primary: {
           DEFAULT: '#1E40AF',
