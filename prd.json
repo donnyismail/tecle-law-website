@@ -1,0 +1,369 @@
+{
+    "project": "Tecle Law Website - 10/10 Redesign",
+    "description": "Transform the website from a 5/10 template-tier site to a 10/10 professional modern 2026 law firm website",
+    "repository": "https://github.com/donnyismail/tecle-law-website",
+    "tech_stack": {
+        "framework": "Next.js 16 with App Router",
+        "styling": "Tailwind CSS v4",
+        "language": "TypeScript",
+        "animations": "Framer Motion (installed)",
+        "icons": "Lucide React (installed)"
+    },
+    "tasks": [
+        {
+            "id": "TASK-001",
+            "title": "Fix Tailwind v4 Color Configuration",
+            "priority": "critical",
+            "status": "pending",
+            "estimated_time": "30 minutes",
+            "description": "The custom colors (primary, secondary, success, navy) are not rendering because Tailwind v4 requires CSS-first configuration using @theme blocks instead of tailwind.config.ts. Hero sections show white text on white background.",
+            "files_to_modify": [
+                "app/globals.css"
+            ],
+            "acceptance_criteria": [
+                "All custom colors (primary #1E40AF, secondary #D97706, success #059669, navy #0F172A) render correctly",
+                "Hero sections display colored gradients with visible white text",
+                "bg-primary, bg-success, text-navy etc. classes work throughout the site"
+            ],
+            "technical_details": "Replace @theme inline with proper @theme block defining --color-primary, --color-primary-dark, --color-secondary, --color-success, --color-navy, --color-gray-light as CSS custom properties"
+        },
+        {
+            "id": "TASK-002",
+            "title": "Add Premium Typography System",
+            "priority": "high",
+            "status": "pending",
+            "estimated_time": "45 minutes",
+            "description": "Replace system fonts (Arial) with premium Google Fonts. Use Inter for body text and DM Serif Display for elegant headings to create a sophisticated law firm aesthetic.",
+            "files_to_modify": [
+                "app/layout.tsx",
+                "app/globals.css"
+            ],
+            "acceptance_criteria": [
+                "Inter font loaded and applied to body text",
+                "DM Serif Display loaded for headings",
+                "CSS variables --font-sans and --font-heading defined",
+                "All h1, h2, h3 elements use serif heading font",
+                "Font smoothing enabled (-webkit-font-smoothing: antialiased)"
+            ],
+            "technical_details": "Import fonts from next/font/google with CSS variables. Apply to body className. Create .font-heading utility class."
+        },
+        {
+            "id": "TASK-003",
+            "title": "Redesign Header with Glassmorphic Effect",
+            "priority": "high",
+            "status": "pending",
+            "estimated_time": "1 hour",
+            "description": "Transform the plain white header into a modern glassmorphic navigation bar with blur effect on scroll, smooth mobile menu animations, and prominent phone CTA.",
+            "files_to_modify": [
+                "components/layout/Header.tsx",
+                "app/globals.css"
+            ],
+            "acceptance_criteria": [
+                "Header has backdrop-blur-md bg-white/80 effect when scrolled",
+                "Subtle border-bottom appears on scroll",
+                "Mobile menu slides in from right with backdrop overlay",
+                "Phone number styled as prominent pill button",
+                "Smooth transitions on all state changes",
+                "Logo scales appropriately on mobile"
+            ],
+            "technical_details": "Use useState to track scroll position. Add Framer Motion for mobile menu animation. Create backdrop overlay that closes menu on click."
+        },
+        {
+            "id": "TASK-004",
+            "title": "Redesign Homepage Hero Section",
+            "priority": "high",
+            "status": "pending",
+            "estimated_time": "2 hours",
+            "description": "Transform the plain gradient hero into a visually striking section with layered design, animated entrance, premium CTAs, and trust badge. This is the first impression visitors get.",
+            "files_to_modify": [
+                "app/page.tsx",
+                "app/globals.css"
+            ],
+            "acceptance_criteria": [
+                "Hero has layered design with pattern overlay or subtle texture",
+                "Floating badge above headline (e.g., 'Houston's Trusted Law Firm')",
+                "Headline fades up with animation on load",
+                "Subtext and CTAs stagger in with delays",
+                "Primary CTA has gradient background with hover shine effect",
+                "Secondary CTA has white fill with border, fills on hover",
+                "Phone number is large and tappable",
+                "Optional: floating accent shapes for visual interest"
+            ],
+            "technical_details": "Use Framer Motion for entrance animations. Create CSS pattern overlay or use gradient mesh. Add hover:scale and transition effects to CTAs."
+        },
+        {
+            "id": "TASK-005",
+            "title": "Redesign Homepage Practice Area Cards",
+            "priority": "medium",
+            "status": "pending",
+            "estimated_time": "1 hour",
+            "description": "Upgrade the flat white cards to premium elevated cards with depth, gradient backgrounds, interactive hover states, and animated arrows.",
+            "files_to_modify": [
+                "app/page.tsx"
+            ],
+            "acceptance_criteria": [
+                "Cards have subtle gradient or off-white background instead of pure white",
+                "Shadow deepens on hover (shadow-lg to shadow-xl)",
+                "Card scales slightly on hover (scale-[1.02])",
+                "Icon sits in colored circular background",
+                "Arrow icon slides right on hover",
+                "Smooth 200ms transitions on all effects"
+            ],
+            "technical_details": "Use group hover utilities. Add ArrowRight icon from lucide-react. Use transition-all duration-200."
+        },
+        {
+            "id": "TASK-006",
+            "title": "Add Scroll-Triggered Animations Throughout",
+            "priority": "medium",
+            "status": "pending",
+            "estimated_time": "1.5 hours",
+            "description": "Create reusable animation components using Framer Motion intersection observer to fade in sections as users scroll down the page.",
+            "files_to_modify": [
+                "components/ui/animated-section.tsx (NEW)",
+                "components/ui/fade-in.tsx (NEW)",
+                "app/page.tsx",
+                "app/personal-injury/page.tsx",
+                "app/expungement/page.tsx",
+                "app/about/page.tsx"
+            ],
+            "acceptance_criteria": [
+                "AnimatedSection component triggers animation when scrolled into viewport",
+                "FadeIn component supports variants: up, down, left, right",
+                "Stagger effect for child elements",
+                "Animations respect prefers-reduced-motion",
+                "All major sections on all pages use these components"
+            ],
+            "technical_details": "Use framer-motion useInView hook. Create motion variants for different directions. Wrap sections with components."
+        },
+        {
+            "id": "TASK-007",
+            "title": "Redesign Expungement Page (QR Landing Priority)",
+            "priority": "critical",
+            "status": "pending",
+            "estimated_time": "3 hours",
+            "description": "This is THE most important page - 100% of QR code traffic lands here. Must be optimized for mobile conversion with premium pricing display, trust signals, sticky CTA, and FAQ section.",
+            "files_to_modify": [
+                "app/expungement/page.tsx",
+                "components/ui/accordion.tsx (NEW)"
+            ],
+            "acceptance_criteria": [
+                "Hero uses premium serif font for impact",
+                "Credibility badge: 'Trusted by 500+ Texans' or similar",
+                "Pricing box is elevated card with premium design (shadow-2xl, gradient border)",
+                "Money-Back Guarantee badge is prominent with shield icon",
+                "Optional: strike-through 'regular' price for perceived value",
+                "3-step process section with numbered circles",
+                "FAQ accordion with common expungement questions",
+                "Sticky mobile CTA bar at bottom (fixed, visible on scroll)",
+                "Multiple CTAs throughout page",
+                "Page loads fast (<2 seconds on 3G)"
+            ],
+            "technical_details": "Create FAQ Accordion component with AnimatePresence. Use position:fixed for sticky CTA. Add intersection observer to show/hide sticky CTA."
+        },
+        {
+            "id": "TASK-008",
+            "title": "Redesign Personal Injury Page",
+            "priority": "medium",
+            "status": "pending",
+            "estimated_time": "1.5 hours",
+            "description": "Apply consistent premium design language from homepage. Focus on the 6 practice area cards and the No Win No Fee section.",
+            "files_to_modify": [
+                "app/personal-injury/page.tsx"
+            ],
+            "acceptance_criteria": [
+                "Hero matches homepage style (pattern overlay, animations)",
+                "Practice area cards match homepage card style",
+                "No Win No Fee section is visually impactful with large shield icon",
+                "All sections have scroll-triggered fade-in animations",
+                "Page has consistent call-to-action pattern"
+            ],
+            "technical_details": "Reuse AnimatedSection and FadeIn components. Apply same card styling from homepage."
+        },
+        {
+            "id": "TASK-009",
+            "title": "Redesign About Page with Attorney Section",
+            "priority": "medium",
+            "status": "pending",
+            "estimated_time": "1 hour",
+            "description": "Create professional about page with placeholder for attorney photo and bio. Design should accommodate real content when provided.",
+            "files_to_modify": [
+                "app/about/page.tsx"
+            ],
+            "acceptance_criteria": [
+                "Hero matches site-wide style",
+                "Two-column layout for attorney: photo left, bio right",
+                "Photo placeholder is elegant gradient box with silhouette icon",
+                "Bio section has clear typography hierarchy",
+                "Why Choose Us cards match homepage style",
+                "Areas served section is visually appealing"
+            ],
+            "technical_details": "Use CSS aspect-ratio for photo placeholder. Create person silhouette placeholder with Lucide User icon."
+        },
+        {
+            "id": "TASK-010",
+            "title": "Redesign Footer",
+            "priority": "low",
+            "status": "pending",
+            "estimated_time": "45 minutes",
+            "description": "Upgrade footer to match premium site design with better visual hierarchy, larger logo, and consultation CTA.",
+            "files_to_modify": [
+                "components/layout/Footer.tsx"
+            ],
+            "acceptance_criteria": [
+                "Navy background has subtle gradient or pattern",
+                "Larger logo at top of footer",
+                "Better column spacing and alignment",
+                "Social media icon placeholders (LinkedIn, etc.)",
+                "Free Consultation CTA button",
+                "Mobile layout stacks columns properly",
+                "Copyright and legal info styled subtly"
+            ],
+            "technical_details": "Use grid with responsive columns. Add gradient overlay to background."
+        },
+        {
+            "id": "TASK-011",
+            "title": "Add Trust Signals and Social Proof Section",
+            "priority": "high",
+            "status": "pending",
+            "estimated_time": "1.5 hours",
+            "description": "Add compelling trust signals throughout the site: badges, stats counters, and placeholder testimonial section to build credibility.",
+            "files_to_modify": [
+                "components/ui/trust-badges.tsx (NEW)",
+                "components/ui/testimonial-card.tsx (NEW)",
+                "app/page.tsx"
+            ],
+            "acceptance_criteria": [
+                "Trust badges section with icons: 'No Win No Fee', 'Money-Back Guarantee', 'Free Consultation', '24hr Response'",
+                "Stats counter section: 'X Cases Won', 'X Years Experience', etc. (placeholder numbers)",
+                "Testimonial placeholder cards with 5-star rating display",
+                "All elements have subtle entrance animations"
+            ],
+            "technical_details": "Create reusable badge components. Use CSS Grid for badge layout. Star icons from Lucide."
+        },
+        {
+            "id": "TASK-012",
+            "title": "Add Professional Stock Hero Images",
+            "priority": "medium",
+            "status": "pending",
+            "estimated_time": "1 hour",
+            "description": "Download and implement high-quality stock photos as hero backgrounds with proper overlays to maintain text readability.",
+            "files_to_modify": [
+                "public/images/ (NEW directory)",
+                "app/page.tsx",
+                "app/personal-injury/page.tsx",
+                "app/expungement/page.tsx",
+                "app/about/page.tsx"
+            ],
+            "acceptance_criteria": [
+                "Homepage: Houston skyline or professional office image",
+                "Personal Injury: Justice scales or courtroom image",
+                "Expungement: Fresh start/sunrise imagery",
+                "About: Office or courthouse image",
+                "All images have dark gradient overlay for text contrast",
+                "Images are optimized and served via Next.js Image component",
+                "Images have proper alt text for accessibility"
+            ],
+            "technical_details": "Use Unsplash for free stock photos. Apply via background-image with gradient overlay. Use Next.js Image for optimization."
+        },
+        {
+            "id": "TASK-013",
+            "title": "Implement Form Submission with Email Integration",
+            "priority": "high",
+            "status": "pending",
+            "estimated_time": "2 hours",
+            "description": "Connect the contact form to actually send emails to the law firm using Resend email API. Add loading states and success/error feedback.",
+            "files_to_modify": [
+                "app/api/submit-lead/route.ts",
+                "components/ui/contact-form.tsx"
+            ],
+            "acceptance_criteria": [
+                "Form submits to API route successfully",
+                "Email sent to intake@teclelaw.com with lead details",
+                "Button shows loading spinner during submission",
+                "Success message displayed after submission",
+                "Error handling with user-friendly message",
+                "Form resets after successful submission"
+            ],
+            "technical_details": "Install resend package. Create Resend client with API key from env. Use React state for loading/success/error. Add RESEND_API_KEY to .env.local."
+        },
+        {
+            "id": "TASK-014",
+            "title": "Add Mobile-First Polish and Touch Optimizations",
+            "priority": "high",
+            "status": "pending",
+            "estimated_time": "1.5 hours",
+            "description": "Ensure all interactive elements meet 44x44px touch target minimum. Add mobile-specific improvements like sticky CTAs and thumb-zone optimization.",
+            "files_to_modify": [
+                "app/globals.css",
+                "All page files",
+                "All component files"
+            ],
+            "acceptance_criteria": [
+                "All buttons minimum 44x44px on mobile",
+                "Phone links work correctly (tel: protocol)",
+                "Email links work correctly (mailto: protocol)",
+                "No horizontal scroll on any page at 375px",
+                "Sticky mobile CTA on Expungement page",
+                "Navigation is easy to use with one thumb",
+                "Form inputs are large enough for easy typing"
+            ],
+            "technical_details": "Use min-h-[44px] min-w-[44px] on interactive elements. Test with Chrome DevTools device mode at 375px width."
+        },
+        {
+            "id": "TASK-015",
+            "title": "Performance Optimization and Lighthouse Score",
+            "priority": "medium",
+            "status": "pending",
+            "estimated_time": "1 hour",
+            "description": "Optimize for Lighthouse score of 90+ across Performance, Accessibility, Best Practices, and SEO. Ensure fast loading especially on mobile.",
+            "files_to_modify": [
+                "Various files as needed"
+            ],
+            "acceptance_criteria": [
+                "Lighthouse Performance score: 90+",
+                "Lighthouse Accessibility score: 90+",
+                "Lighthouse Best Practices score: 90+",
+                "Lighthouse SEO score: 90+",
+                "Page load under 2 seconds on 3G",
+                "All images have width/height to prevent layout shift",
+                "Fonts preloaded",
+                "Critical CSS inlined"
+            ],
+            "technical_details": "Use next/image for all images. Add proper meta tags. Ensure all interactive elements are accessible."
+        }
+    ],
+    "execution_order": [
+        "TASK-001 (blocks all visual work)",
+        "TASK-002 (typography foundation)",
+        "TASK-003 (header)",
+        "TASK-004 (homepage hero)",
+        "TASK-006 (animation components - reused by other tasks)",
+        "TASK-005 (homepage cards)",
+        "TASK-011 (trust signals)",
+        "TASK-007 (expungement - priority landing)",
+        "TASK-008 (personal injury)",
+        "TASK-009 (about)",
+        "TASK-010 (footer)",
+        "TASK-012 (stock images)",
+        "TASK-013 (form integration)",
+        "TASK-014 (mobile polish)",
+        "TASK-015 (performance)"
+    ],
+    "verification": {
+        "build_command": "npm run build",
+        "lint_command": "npm run lint",
+        "dev_command": "npm run dev",
+        "test_urls": [
+            "http://localhost:3000",
+            "http://localhost:3000/personal-injury",
+            "http://localhost:3000/expungement",
+            "http://localhost:3000/about",
+            "http://localhost:3000/contact"
+        ],
+        "mobile_breakpoints": [
+            "375px",
+            "768px"
+        ],
+        "desktop_breakpoint": "1440px"
+    }
+}
