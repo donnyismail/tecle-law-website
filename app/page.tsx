@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { Shield, Clock, Award, Phone, ArrowRight, Scale, FileCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { COMPANY } from '@/lib/constants';
+import { StatsCounter } from '@/components/ui/stats-counter';
+import { TestimonialCard, placeholderTestimonials } from '@/components/ui/testimonial-card';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -278,6 +280,50 @@ export default function Home() {
               <p className="text-gray-600">Receive the compensation or record clearance you deserve.</p>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Stats Counter Section */}
+      <section className="relative py-16 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-navy via-primary-dark to-primary" />
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 1px)`,
+            backgroundSize: '32px 32px',
+          }}
+        />
+        <div className="relative max-w-6xl mx-auto">
+          <StatsCounter />
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 px-4 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-14"
+          >
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy mb-4">What Our Clients Say</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Real results from real people we have helped</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {placeholderTestimonials.map((testimonial, index) => (
+              <TestimonialCard
+                key={index}
+                quote={testimonial.quote}
+                author={testimonial.author}
+                title={testimonial.title}
+                rating={testimonial.rating}
+                delay={index * 0.1}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
