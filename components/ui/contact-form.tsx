@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { Phone, Mail, Clock, MapPin } from "lucide-react";
+import React, { useState } from "react";
+import { Phone, Mail, Clock, MapPin, Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,10 +12,52 @@ interface ContactFormProps {
     description?: string;
 }
 
+type FormStatus = 'idle' | 'loading' | 'success' | 'error';
+
 export const ContactForm = ({
     title = "Get Your Free Consultation",
     description = "Have questions about your case? Fill out the form below and we'll get back to you within 24 hours. All consultations are confidential.",
 }: ContactFormProps) => {
+    const [status, setStatus] = useState<FormStatus>('idle');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        setStatus('loading');
+        setErrorMessage('');
+
+        const formData = new FormData(e.currentTarget);
+        const data = {
+            name: `${formData.get('firstname')} ${formData.get('lastname')}`,
+            email: formData.get('email'),
+            phone: formData.get('phone'),
+            caseType: formData.get('caseType') || 'Not specified',
+            message: formData.get('message'),
+        };
+
+        try {
+            const response = await fetch('/api/submit-lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                setStatus('success');
+                // Reset form
+                e.currentTarget.reset();
+            } else {
+                setStatus('error');
+                setErrorMessage(result.message || 'Something went wrong. Please try again.');
+            }
+        } catch {
+            setStatus('error');
+            setErrorMessage('Unable to submit form. Please call us directly.');
+        }
+    }
+
     return (
         <section className="py-16 md:py-24 bg-gray-light">
             <div className="max-w-7xl mx-auto px-4">
@@ -101,7 +143,30 @@ export const ContactForm = ({
                     <div className="lg:w-3/5">
                         <div className="bg-white rounded-xl shadow-xl p-8 md:p-10">
                             <h2 className="text-2xl font-bold text-navy mb-6">Send Us a Message</h2>
-                            <form className="space-y-6">
+
+                            {/* Success Message */}
+                            {status === 'success' && (
+                                <div className="mb-6 p-4 bg-success/10 border border-success/20 rounded-lg flex items-start gap-3">
+                                    <CheckCircle className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
+                                    <div>
+                                        <p className="font-semibold text-success">Message Sent Successfully!</p>
+                                        <p className="text-sm text-gray-600">Thank you! We will contact you within 24 hours.</p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Error Message */}
+                            {status === 'error' && (
+                                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
+                                    <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                                    <div>
+                                        <p className="font-semibold text-red-600">Submission Failed</p>
+                                        <p className="text-sm text-gray-600">{errorMessage}</p>
+                                    </div>
+                                </div>
+                            )}
+
+                            <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                         <Label htmlFor="firstname">First Name *</Label>
@@ -175,9 +240,17 @@ export const ContactForm = ({
 
                                 <button
                                     type="submit"
-                                    className="w-full bg-success hover:bg-success-dark text-white font-bold py-4 px-8 rounded-lg transition-colors text-lg"
+                                    disabled={status === 'loading'}
+                                    className="w-full bg-success hover:bg-success-dark text-white font-bold py-4 px-8 rounded-lg transition-colors text-lg disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                                 >
-                                    Request Free Consultation
+                                    {status === 'loading' ? (
+                                        <>
+                                            <Loader2 className="w-5 h-5 animate-spin" />
+                                            Sending...
+                                        </>
+                                    ) : (
+                                        'Request Free Consultation'
+                                    )}
                                 </button>
 
                                 <p className="text-sm text-gray-500 text-center">
