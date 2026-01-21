@@ -43,8 +43,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Typography utilities */
-.font-heading {
+/* Typography - Headings use DM Serif Display */
+h1, h2, h3, .font-heading {
   font-family: var(--font-dm-serif), Georgia, serif;
 }
 
