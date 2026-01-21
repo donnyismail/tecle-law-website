@@ -21,18 +21,42 @@ export const metadata: Metadata = {
     template: "%s | TECLE LAW",
   },
   description: "Houston's trusted personal injury and expungement attorney. No fees unless we win. Money-back guarantee on expungements. Call (713) 282-5871 for free consultation.",
+  keywords: ['Houston attorney', 'personal injury lawyer', 'expungement Texas', 'criminal record', 'car accident lawyer'],
+  authors: [{ name: 'TECLE LAW, PLLC' }],
   metadataBase: new URL('https://teclelaw.com'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
     siteName: 'TECLE LAW, PLLC',
+    title: 'TECLE LAW, PLLC | Houston Personal Injury & Expungement Attorney',
+    description: "Houston's trusted personal injury and expungement attorney. No fees unless we win.",
   },
   twitter: {
     card: 'summary_large_image',
+    title: 'TECLE LAW, PLLC | Houston Attorney',
+    description: "Personal injury & expungement attorney. No fees unless we win.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   icons: {
     icon: '/favicon.png',
     apple: '/favicon.png',
+  },
+  verification: {
+    // Add Google Search Console verification when available
+    // google: 'verification-code',
   },
 };
 
