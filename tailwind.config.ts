@@ -12,27 +12,7 @@ export default {
         sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         heading: ['var(--font-dm-serif)', 'Georgia', 'serif'],
       },
-      colors: {
-        primary: {
-          DEFAULT: '#1E40AF',
-          dark: '#1E3A8A',
-        },
-        secondary: {
-          DEFAULT: '#D97706',
-          dark: '#B45309',
-        },
-        success: {
-          DEFAULT: '#059669',
-          dark: '#047857',
-        },
-        navy: {
-          DEFAULT: '#0F172A',
-          light: '#334155',
-        },
-        gray: {
-          light: '#F8FAFC',
-        },
-      },
+      /* Colors now defined via @theme in globals.css for Tailwind v4 */
     },
   },
   plugins: [],

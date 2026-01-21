@@ -1,29 +1,36 @@
 @import "tailwindcss";
-@config "../tailwind.config.ts";
 
 /* ============================================
-   TECLE LAW - Design System
+   TECLE LAW - Design System (Tailwind v4)
    ============================================ */
 
-/* Custom CSS Properties for gradient utilities */
-:root {
+/* Tailwind v4 Theme Configuration */
+@theme {
+  /* Primary Blue */
   --color-primary: #1E40AF;
   --color-primary-dark: #1E3A8A;
   --color-primary-light: #3B82F6;
 
+  /* Secondary Amber */
   --color-secondary: #D97706;
   --color-secondary-dark: #B45309;
   --color-secondary-light: #F59E0B;
 
+  /* Success Green */
   --color-success: #059669;
   --color-success-dark: #047857;
   --color-success-light: #10B981;
 
+  /* Navy */
   --color-navy: #0F172A;
   --color-navy-light: #1E293B;
 
+  /* Gray */
   --color-gray-light: #F8FAFC;
+}
 
+/* CSS Custom Properties for non-Tailwind usage */
+:root {
   --background: #ffffff;
   --foreground: #0F172A;
 }
