@@ -8,10 +8,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export default function Button({ variant = 'primary', children, className = '', ...props }: ButtonProps) {
-  const baseStyles = 'px-8 py-3 rounded-lg font-semibold transition-all duration-200 min-h-[44px] min-w-[44px]';
+  const baseStyles = 'px-8 py-4 rounded-lg font-bold transition-all duration-200 min-h-[56px] text-lg shadow-lg';
   const variants = {
-    primary: 'bg-success text-white hover:bg-success-dark',
-    secondary: 'bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white',
+    primary: 'bg-green-500 text-white hover:bg-green-600',
+    secondary: 'bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50',
   };
 
   return (
