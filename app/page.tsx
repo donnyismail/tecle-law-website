@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary to-primary-dark text-white py-20 px-4">
+      <section className="bg-primary text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Injured or Need to Clear Your Record? We Fight For You.
@@ -16,10 +16,10 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Link href="/contact">
-              <Button variant="primary" className="w-full sm:w-auto">Free Consultation</Button>
+              <Button variant="primary" className="w-full sm:w-auto bg-success hover:bg-success-dark text-white">Free Consultation</Button>
             </Link>
             <Link href="/expungement">
-              <Button variant="secondary" className="w-full sm:w-auto bg-white">Clean My Record</Button>
+              <Button variant="secondary" className="w-full sm:w-auto bg-white text-primary hover:bg-gray-100">Clean My Record</Button>
             </Link>
           </div>
           <a href="tel:7132825871" className="inline-flex items-center text-2xl font-bold hover:text-secondary transition-colors">
@@ -30,12 +30,12 @@ export default function Home() {
       </section>
 
       {/* Practice Areas */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12 text-navy">How We Can Help</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {/* Personal Injury */}
-            <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-gray-200">
               <h3 className="text-2xl font-bold mb-4 text-primary">Personal Injury</h3>
               <p className="text-gray-700 mb-4">
                 Injured in an accident? We fight for victims of 18-wheeler accidents, car crashes, rideshare incidents, and industrial explosions. No fees unless we win your case.
@@ -46,7 +46,7 @@ export default function Home() {
             </div>
 
             {/* Expungement */}
-            <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-gray-200">
               <h3 className="text-2xl font-bold mb-4 text-success">Criminal Expungement</h3>
               <p className="text-gray-700 mb-4">
                 Clear your record and move forward. $1,495 all-inclusive with a money-back guarantee if we cannot expunge your charges. Get a fresh start today.
